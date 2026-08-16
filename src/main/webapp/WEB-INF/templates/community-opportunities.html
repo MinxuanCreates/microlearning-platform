@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Community Opportunities - i+1</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet"
+        th:href="@{/css/style.css?v=4}">
+
+  <!-- Community page styles -->
+  <link rel="stylesheet"
+        th:href="@{/css/community.css?v=7}">
+</head>
+
+<body>
+
+<!-- Main navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+  <div class="container community-navbar-content">
+
+    <div class="d-flex align-items-center">
+
+      <!-- Logged-in users return to My Journey -->
+      <a class="navbar-brand fw-bold me-2"
+         th:if="${session.userId != null}"
+         th:href="@{/dashboard}">
+        i+1
+      </a>
+
+      <!-- Visitors return to the home page -->
+      <a class="navbar-brand fw-bold me-2"
+         th:unless="${session.userId != null}"
+         th:href="@{/}">
+        i+1
+      </a>
+
+      <span class="brand-tagline">
+        Welcome!
+      </span>
+
+    </div>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse"
+         id="mainNavbar">
+
+      <div class="navbar-nav ms-auto align-items-lg-center">
+
+        <!-- Logged-in users see My Journey first -->
+        <a class="nav-link"
+           th:if="${loggedIn}"
+           th:href="@{/dashboard}">
+          My Journey
+        </a>
+
+        <!-- Visitors see Home instead of My Journey -->
+        <a class="nav-link"
+           th:if="${!loggedIn}"
+           th:href="@{/}">
+          Home
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/modules}">
+          Learning
+        </a>
+
+        <a class="nav-link active"
+           th:href="@{/community}">
+          Community
+        </a>
+
+        <a class="nav-link"
+           th:if="${loggedIn}"
+           th:href="@{/view-notes}">
+          Notes
+        </a>
+
+        <a class="btn btn-outline-primary community-login-nav-button ms-lg-3"
+           th:if="${!loggedIn}"
+           th:href="@{/login}">
+          Login
+        </a>
+
+        <a class="btn btn-primary community-register-nav-button ms-lg-2"
+           th:if="${!loggedIn}"
+           th:href="@{/register}">
+          Create Account
+        </a>
+
+        <a class="btn btn-outline-primary community-login-nav-button ms-lg-3"
+           th:if="${loggedIn}"
+           th:href="@{/logout}">
+          Logout
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>
+
+<main class="community-main">
+
+  <div class="community-content">
+
+    <!-- Page introduction -->
+    <section class="community-opportunity-hero text-center">
+
+      <span class="community-opportunity-eyebrow">
+        Shared learning beyond lessons
+      </span>
+
+      <h1>
+        Community Opportunities
+      </h1>
+
+      <p class="community-opportunity-intro mx-auto">
+        Find project partners, join learning activities,
+        and discover events shared by the community.
+      </p>
+
+      <a class="btn btn-outline-secondary community-opportunity-back-button"
+         th:href="@{/community}">
+
+        <i class="bi bi-arrow-left me-2"
+           aria-hidden="true"></i>
+
+        Back to Community
+
+      </a>
+
+    </section>
+
+    <!-- Success message -->
+    <div th:if="${successMessage}"
+         class="alert alert-success"
+         role="alert">
+
+      <i class="bi bi-check-circle me-2"
+         aria-hidden="true"></i>
+
+      <span th:text="${successMessage}">
+        Opportunity published successfully.
+      </span>
+
+    </div>
+
+    <!-- Error message -->
+    <div th:if="${errorMessage}"
+         class="alert alert-danger"
+         role="alert">
+
+      <i class="bi bi-exclamation-circle me-2"
+         aria-hidden="true"></i>
+
+      <span th:text="${errorMessage}">
+        Something went wrong.
+      </span>
+
+    </div>
+
+    <!-- Opportunity form -->
+    <section class="community-opportunity-form-section">
+
+      <div class="community-opportunity-form-card">
+
+        <!-- Logged-in users can publish -->
+        <div th:if="${loggedIn}">
+
+          <div class="community-section-heading">
+
+            <div class="community-section-icon"
+                 aria-hidden="true">
+
+              <i class="bi bi-megaphone"></i>
+
+            </div>
+
+            <div>
+
+              <span class="community-opportunity-section-label">
+                Share an opportunity
+              </span>
+
+              <h2>
+                Help others connect and participate
+              </h2>
+
+              <p>
+                Invite others to collaborate on a project,
+                join a study activity, or attend a community event.
+              </p>
+
+            </div>
+
+          </div>
+
+          <form class="community-create-form"
+                th:action="@{/community-opportunities}"
+                method="post">
+
+            <div class="row g-4">
+
+              <!-- Opportunity type -->
+              <div class="col-md-6">
+
+                <label for="opportunityType"
+                       class="form-label">
+
+                  Opportunity type
+                  <span class="text-danger">*</span>
+
+                </label>
+
+                <select class="form-select community-form-control"
+                        id="opportunityType"
+                        name="opportunityType"
+                        required>
+
+                  <option value=""
+                          selected
+                          disabled>
+                    Select a type
+                  </option>
+
+                  <option value="Project Collaboration">
+                    Project Collaboration
+                  </option>
+
+                  <option value="Community Event">
+                    Community Event
+                  </option>
+
+                  <option value="Study Group">
+                    Study Group
+                  </option>
+
+                  <option value="Workshop">
+                    Workshop
+                  </option>
+
+                </select>
+
+              </div>
+
+              <!-- Title -->
+              <div class="col-md-6">
+
+                <label for="title"
+                       class="form-label">
+
+                  Title
+                  <span class="text-danger">*</span>
+
+                </label>
+
+                <input type="text"
+                       class="form-control community-form-control"
+                       id="title"
+                       name="title"
+                       maxlength="150"
+                       placeholder="For example: Looking for a Java project partner"
+                       required>
+
+              </div>
+
+              <!-- Description -->
+              <div class="col-12">
+
+                <label for="description"
+                       class="form-label">
+
+                  Description
+                  <span class="text-danger">*</span>
+
+                </label>
+
+                <textarea class="form-control community-form-control community-opportunity-textarea"
+                          id="description"
+                          name="description"
+                          rows="5"
+                          maxlength="2000"
+                          placeholder="Explain what the opportunity is about and who may be interested."
+                          required></textarea>
+
+              </div>
+
+              <!-- Location -->
+              <div class="col-md-6">
+
+                <label for="location"
+                       class="form-label">
+                  Location
+                </label>
+
+                <input type="text"
+                       class="form-control community-form-control"
+                       id="location"
+                       name="location"
+                       maxlength="150"
+                       placeholder="For example: Online, University Library, or Galway city centre">
+
+                <div class="form-text">
+                  For safety, do not share a home address or private location.
+                </div>
+
+              </div>
+
+              <!-- Date and time -->
+              <div class="col-md-6">
+
+                <label for="eventDate"
+                       class="form-label">
+                  Date and time
+                </label>
+
+                <input type="datetime-local"
+                       class="form-control community-form-control"
+                       id="eventDate"
+                       name="eventDate">
+
+              </div>
+
+              <!-- Contact information -->
+              <div class="col-12">
+
+                <label for="contactInformation"
+                       class="form-label">
+                  Contact information
+                </label>
+
+                <input type="text"
+                       class="form-control community-form-control"
+                       id="contactInformation"
+                       name="contactInformation"
+                       maxlength="150"
+                       placeholder="For example: Email address or how people can respond">
+
+                <div class="form-text">
+                  Contact information will only be visible to logged-in users.
+                </div>
+
+              </div>
+
+              <!-- Submit button -->
+              <div class="col-12">
+
+                <button type="submit"
+                        class="btn btn-primary community-opportunity-submit-btn">
+
+                  <i class="bi bi-send me-2"
+                     aria-hidden="true"></i>
+
+                  Publish Opportunity
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Visitors must log in before publishing -->
+        <div th:if="${!loggedIn}"
+             class="community-opportunity-login-content">
+
+          <div class="community-opportunity-login-icon"
+               aria-hidden="true">
+
+            <i class="bi bi-people"></i>
+
+          </div>
+
+          <h2>
+            Want to share an opportunity?
+          </h2>
+
+          <p>
+            You can explore opportunities without an account,
+            but you need to log in before publishing one.
+          </p>
+
+          <a class="btn btn-primary community-account-button"
+             th:href="@{/login}">
+            Log in to contribute
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Opportunity list -->
+    <section class="community-opportunity-list-section">
+
+      <div class="community-opportunity-list-header">
+
+        <div>
+
+          <span class="community-opportunity-section-label">
+            Explore
+          </span>
+
+          <h2>
+            Current Opportunities
+          </h2>
+
+        </div>
+
+        <p th:if="${opportunities != null}">
+
+          <span th:text="${#lists.size(opportunities)}">
+            0
+          </span>
+
+          opportunities available
+
+        </p>
+
+      </div>
+
+      <!-- Filter opportunities by type -->
+      <div class="community-opportunity-filters">
+
+        <a class="community-opportunity-filter-button"
+           th:classappend="${selectedType == 'All'} ? ' active' : ''"
+           th:href="@{/community-opportunities}">
+          All
+        </a>
+
+        <a class="community-opportunity-filter-button"
+           th:classappend="${selectedType == 'Project Collaboration'} ? ' active' : ''"
+           th:href="@{/community-opportunities(type='Project Collaboration')}">
+          Project Collaboration
+        </a>
+
+        <a class="community-opportunity-filter-button"
+           th:classappend="${selectedType == 'Community Event'} ? ' active' : ''"
+           th:href="@{/community-opportunities(type='Community Event')}">
+          Community Event
+        </a>
+
+        <a class="community-opportunity-filter-button"
+           th:classappend="${selectedType == 'Study Group'} ? ' active' : ''"
+           th:href="@{/community-opportunities(type='Study Group')}">
+          Study Group
+        </a>
+
+        <a class="community-opportunity-filter-button"
+           th:classappend="${selectedType == 'Workshop'} ? ' active' : ''"
+           th:href="@{/community-opportunities(type='Workshop')}">
+          Workshop
+        </a>
+
+      </div>
+
+      <!-- Empty state -->
+      <div th:if="${opportunities == null or #lists.isEmpty(opportunities)}"
+           class="community-opportunity-empty-state">
+
+        <div class="community-opportunity-empty-icon"
+             aria-hidden="true">
+
+          <i class="bi bi-calendar2-heart"></i>
+
+        </div>
+
+        <h3>
+          No opportunities found
+        </h3>
+
+        <p th:if="${selectedType == 'All'}">
+          No opportunities have been shared yet.
+        </p>
+
+        <p th:if="${selectedType != 'All'}">
+          No opportunities are available for this type.
+        </p>
+
+      </div>
+
+      <!-- Opportunity cards -->
+      <div class="row g-4"
+           th:if="${opportunities != null and !#lists.isEmpty(opportunities)}">
+
+        <div class="col-12 col-xl-6"
+             th:each="opportunity : ${opportunities}">
+
+          <article class="community-opportunity-card">
+
+            <!-- Type and publication date -->
+            <div class="community-opportunity-card-header">
+
+              <span class="community-opportunity-type"
+                    th:classappend="${opportunity.opportunityType == 'Project Collaboration'}
+                        ? ' opportunity-type-project'
+                        : (${opportunity.opportunityType == 'Community Event'}
+                        ? ' opportunity-type-event'
+                        : ' opportunity-type-other')"
+                    th:text="${opportunity.opportunityType}">
+
+                Project Collaboration
+
+              </span>
+
+              <span class="community-opportunity-created"
+                    th:if="${opportunity.createdAt != null}"
+                    th:text="${#temporals.format(
+                        opportunity.createdAt,
+                        'dd MMM yyyy'
+                    )}">
+
+                17 Jul 2026
+
+              </span>
+
+            </div>
+
+            <!-- Opportunity title -->
+            <h3 th:text="${opportunity.title}">
+              Looking for a Java project partner
+            </h3>
+
+            <!-- Publisher name -->
+            <div class="community-opportunity-author"
+                 th:if="${opportunity.username != null
+                         and !#strings.isEmpty(opportunity.username)}">
+
+              <i class="bi bi-person-circle"
+                 aria-hidden="true"></i>
+
+              <span>
+
+                Posted by
+
+                <strong th:text="${opportunity.username}">
+                  Username
+                </strong>
+
+              </span>
+
+            </div>
+
+            <!-- Opportunity description -->
+            <p class="community-opportunity-description"
+               th:text="${opportunity.description}">
+
+              I am looking for another beginner to practise
+              building a small Java application.
+
+            </p>
+
+            <!-- Basic information -->
+            <div class="community-opportunity-details">
+
+              <!-- Location -->
+              <div th:if="${opportunity.location != null
+                          and !#strings.isEmpty(opportunity.location)}">
+
+                <i class="bi bi-geo-alt"
+                   aria-hidden="true"></i>
+
+                <span th:text="${opportunity.location}">
+                  Online
+                </span>
+
+              </div>
+
+              <!-- Event date -->
+              <div th:if="${opportunity.eventDate != null}">
+
+                <i class="bi bi-calendar-event"
+                   aria-hidden="true"></i>
+
+                <span th:text="${#temporals.format(
+                    opportunity.eventDate,
+                    'dd MMM yyyy, HH:mm'
+                )}">
+
+                  25 Jul 2026, 14:00
+
+                </span>
+
+              </div>
+
+            </div>
+
+            <!-- Open the full details page -->
+            <div class="community-opportunity-card-actions">
+
+              <a class="btn btn-outline-primary community-opportunity-details-button"
+                 th:href="@{/community-opportunity(
+                     opportunityId=${opportunity.opportunityId}
+                 )}">
+
+                <i class="bi bi-eye me-2"
+                   aria-hidden="true"></i>
+
+                View Details
+
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<!-- Page footer -->
+<footer class="community-opportunity-footer">
+
+  <div class="community-content">
+
+    <p>
+      i+1 — Grow through Shared Learning
+    </p>
+
+  </div>
+
+</footer>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>

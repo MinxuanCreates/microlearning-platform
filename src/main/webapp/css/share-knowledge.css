@@ -1,0 +1,354 @@
+/* Page colours */
+:root {
+    --share-primary: #A894D6;
+    --share-primary-dark: #7C68B3;
+    --share-light: #F5F0FF;
+    --share-background: #EDE4FF;
+    --share-border: #DDD2F3;
+    --share-text: #27222E;
+    --share-muted: #706978;
+}
+
+/* Main page area */
+.share-knowledge-main {
+    min-height: calc(100vh - 92px);
+    padding-top: clamp(24px, 2.5vw, 38px);
+    padding-bottom: 56px;
+    background-color: var(--share-background);
+}
+
+/* Main page width */
+.share-knowledge-content {
+    width: min(94vw, 1220px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Back link area */
+.share-knowledge-back {
+    margin-bottom: 20px;
+}
+
+.share-knowledge-back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--share-primary-dark);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.share-knowledge-back-link:hover {
+    color: var(--share-text);
+}
+
+/* Page introduction */
+.share-knowledge-introduction {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 34px;
+    margin-bottom: 26px;
+    padding: clamp(36px, 3.5vw, 54px);
+    border: 1px solid var(--share-border);
+    border-radius: 24px;
+    background:
+            radial-gradient(
+                    circle at top right,
+                    rgba(168, 148, 214, 0.2),
+                    transparent 38%
+            ),
+            #FFFFFF;
+    box-shadow: 0 12px 30px rgba(72, 54, 110, 0.07);
+}
+
+/* Small section heading */
+.share-knowledge-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--share-primary-dark);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Page title */
+.share-knowledge-introduction h1 {
+    margin-bottom: 14px;
+    color: var(--share-text);
+    font-size: clamp(40px, 4vw, 58px);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.share-knowledge-introduction p {
+    max-width: 850px;
+    margin-bottom: 0;
+    color: var(--share-muted);
+    font-size: 21px;
+    line-height: 1.65;
+}
+
+/* Page introduction icon */
+.share-knowledge-introduction-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: var(--share-light);
+    color: var(--share-primary-dark);
+    font-size: 40px;
+}
+
+/* Form card */
+.share-knowledge-form-card {
+    padding: clamp(34px, 4vw, 58px);
+    border: 1px solid var(--share-border);
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    box-shadow: 0 12px 30px rgba(72, 54, 110, 0.07);
+}
+
+/* Form introduction */
+.share-knowledge-form-heading {
+    margin-bottom: 34px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--share-border);
+}
+
+.share-knowledge-form-heading h2 {
+    margin-bottom: 10px;
+    color: var(--share-text);
+    font-size: clamp(29px, 2.4vw, 40px);
+    font-weight: 700;
+}
+
+.share-knowledge-form-heading p {
+    margin-bottom: 0;
+    color: var(--share-muted);
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+/* Form field */
+.share-knowledge-field {
+    margin-bottom: 28px;
+}
+
+.share-knowledge-field .form-label {
+    margin-bottom: 10px;
+    color: var(--share-text);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+/* Form input */
+.share-knowledge-input,
+.share-knowledge-textarea {
+    border: 1px solid var(--share-border);
+    border-radius: 14px;
+    background-color: #FFFFFF;
+    color: var(--share-text);
+    font-size: 18px;
+}
+
+.share-knowledge-input {
+    min-height: 58px;
+    padding: 12px 16px;
+}
+
+.share-knowledge-textarea {
+    padding: 16px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.share-knowledge-short-textarea {
+    min-height: 110px;
+}
+
+.share-knowledge-input:focus,
+.share-knowledge-textarea:focus {
+    border-color: var(--share-primary);
+    box-shadow: 0 0 0 0.2rem rgba(168, 148, 214, 0.18);
+}
+
+/* Form help text */
+.share-knowledge-help {
+    margin-top: 8px;
+    color: var(--share-muted);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Reading time field */
+.share-knowledge-reading-time {
+    max-width: 310px;
+}
+
+/* Supportive reminder */
+.share-knowledge-reminder {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 18px;
+    margin-top: 6px;
+    margin-bottom: 34px;
+    padding: 24px;
+    border: 1px solid var(--share-border);
+    border-radius: 18px;
+    background:
+            radial-gradient(
+                    circle at bottom right,
+                    rgba(168, 148, 214, 0.14),
+                    transparent 42%
+            ),
+            var(--share-light);
+}
+
+/* Reminder icon */
+.share-knowledge-reminder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    color: var(--share-primary-dark);
+    font-size: 23px;
+}
+
+.share-knowledge-reminder strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--share-text);
+    font-size: 18px;
+}
+
+.share-knowledge-reminder p {
+    margin-bottom: 0;
+    color: var(--share-muted);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Form buttons */
+.share-knowledge-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 14px;
+    padding-top: 28px;
+    border-top: 1px solid var(--share-border);
+}
+
+.share-knowledge-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 210px;
+    min-height: 56px;
+    padding: 0 24px;
+    border-radius: 13px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Disabled submit button */
+.share-knowledge-action-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Tablet layout */
+@media (max-width: 991.98px) {
+    .share-knowledge-content {
+        width: min(95vw, 900px);
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 767.98px) {
+    .share-knowledge-main {
+        padding-top: 18px;
+        padding-bottom: 36px;
+    }
+
+    .share-knowledge-content {
+        width: calc(100% - 28px);
+    }
+
+    .share-knowledge-introduction {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+        border-radius: 20px;
+    }
+
+    .share-knowledge-introduction h1 {
+        font-size: 38px;
+    }
+
+    .share-knowledge-introduction p {
+        font-size: 19px;
+    }
+
+    .share-knowledge-introduction-icon {
+        width: 76px;
+        height: 76px;
+        font-size: 32px;
+    }
+
+    .share-knowledge-form-card {
+        padding: 30px 24px;
+        border-radius: 20px;
+    }
+
+    .share-knowledge-form-heading h2 {
+        font-size: 29px;
+    }
+
+    .share-knowledge-reading-time {
+        max-width: none;
+    }
+
+    .share-knowledge-reminder {
+        grid-template-columns: 1fr;
+    }
+
+    .share-knowledge-actions {
+        flex-direction: column-reverse;
+    }
+
+    .share-knowledge-action-button {
+        width: 100%;
+    }
+}
+
+/* Small mobile layout */
+@media (max-width: 420px) {
+    .share-knowledge-content {
+        width: calc(100% - 20px);
+    }
+
+    .share-knowledge-introduction,
+    .share-knowledge-form-card {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .share-knowledge-introduction h1 {
+        font-size: 34px;
+    }
+
+    .share-knowledge-input,
+    .share-knowledge-textarea {
+        font-size: 17px;
+    }
+
+    .share-knowledge-reminder {
+        padding: 20px;
+    }
+}

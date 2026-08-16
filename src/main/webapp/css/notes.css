@@ -1,0 +1,455 @@
+/* =========================================================
+   Notes page
+   ========================================================= */
+
+.notes-main {
+    min-height: calc(100vh - 92px);
+    padding-top: clamp(24px, 2.5vw, 38px);
+    padding-bottom: 56px;
+}
+
+.notes-content {
+    width: min(97vw, 1820px);
+    max-width: 1820px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: clamp(16px, 1.4vw, 26px);
+    padding-left: clamp(16px, 1.4vw, 26px);
+}
+
+
+/* =========================================================
+   Welcome section
+   ========================================================= */
+
+.notes-welcome-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    margin-bottom: 32px;
+    padding: clamp(38px, 3.5vw, 56px);
+    overflow: hidden;
+    border: 1px solid var(--lavender-border);
+    border-radius: 26px;
+    background:
+            radial-gradient(
+                    circle at top right,
+                    rgba(168, 148, 214, 0.22),
+                    transparent 34%
+            ),
+            radial-gradient(
+                    circle at bottom left,
+                    rgba(244, 198, 215, 0.17),
+                    transparent 30%
+            ),
+            #FFFFFF;
+    box-shadow: 0 14px 34px rgba(72, 54, 110, 0.08);
+}
+
+.notes-welcome-text {
+    max-width: 1050px;
+}
+
+.notes-eyebrow,
+.notes-card-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--lavender-primary-dark);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.notes-welcome-section h1 {
+    margin-bottom: 14px;
+    color: var(--text-main);
+    font-size: clamp(42px, 3.6vw, 60px);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.notes-welcome-section p {
+    max-width: 900px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 21px;
+    line-height: 1.7;
+}
+
+.notes-welcome-actions {
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.notes-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 230px;
+    min-height: 58px;
+    padding: 0 26px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   Section heading
+   ========================================================= */
+
+.notes-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.notes-section-heading h2 {
+    margin-bottom: 0;
+    color: var(--text-main);
+    font-size: clamp(30px, 2.3vw, 42px);
+    font-weight: 700;
+}
+
+.notes-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 8px 16px;
+    border: 1px solid var(--lavender-border);
+    border-radius: 999px;
+    background-color: var(--lavender-light);
+    color: var(--lavender-primary-dark);
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Note cards
+   ========================================================= */
+
+.note-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    padding: clamp(28px, 2.5vw, 38px);
+    overflow: hidden;
+    border: 1px solid var(--lavender-border);
+    border-top: 5px solid var(--lavender-primary);
+    border-radius: 22px;
+    background:
+            radial-gradient(
+                    circle at bottom right,
+                    rgba(168, 148, 214, 0.12),
+                    transparent 34%
+            ),
+            #FFFFFF;
+    box-shadow: 0 10px 28px rgba(72, 54, 110, 0.07);
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(168, 148, 214, 0.8);
+    box-shadow: 0 16px 36px rgba(72, 54, 110, 0.11);
+}
+
+.note-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.note-icon {
+    display: inline-flex;
+    flex: 0 0 62px;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 19px;
+    background-color: var(--lavender-light);
+    color: var(--lavender-primary-dark);
+    font-size: 27px;
+}
+
+.note-heading {
+    min-width: 0;
+}
+
+.notes-card-label {
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.note-heading h3 {
+    margin-bottom: 0;
+    color: var(--text-main);
+    font-size: clamp(24px, 1.7vw, 31px);
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.note-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+.note-date i {
+    color: var(--lavender-primary-dark);
+}
+
+.note-date time {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.note-content {
+    flex-grow: 1;
+    padding: 20px;
+    border: 1px solid rgba(221, 210, 243, 0.9);
+    border-radius: 16px;
+    background-color: rgba(245, 240, 255, 0.58);
+}
+
+.note-content p {
+    margin-bottom: 0;
+    color: var(--text-main);
+    font-size: 18px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   Empty state
+   ========================================================= */
+
+.notes-empty-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: clamp(34px, 3vw, 48px);
+    border: 1px dashed var(--lavender-primary);
+    border-radius: 24px;
+    background:
+            radial-gradient(
+                    circle at top right,
+                    rgba(244, 198, 215, 0.22),
+                    transparent 36%
+            ),
+            #FFFFFF;
+    box-shadow: 0 11px 30px rgba(72, 54, 110, 0.06);
+}
+
+.notes-empty-icon {
+    display: inline-flex;
+    flex: 0 0 96px;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+    background:
+            linear-gradient(
+                    145deg,
+                    #D9CDF2,
+                    var(--lavender-primary)
+            );
+    color: #FFFFFF;
+    font-size: 42px;
+    box-shadow: 0 16px 32px rgba(124, 104, 179, 0.19);
+}
+
+.notes-empty-content {
+    max-width: 900px;
+}
+
+.notes-empty-content h2 {
+    margin-bottom: 12px;
+    color: var(--text-main);
+    font-size: clamp(29px, 2.2vw, 40px);
+    font-weight: 700;
+}
+
+.notes-empty-content p {
+    margin-bottom: 24px;
+    color: var(--text-muted);
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   Bottom actions
+   ========================================================= */
+
+.notes-bottom-actions {
+    margin-top: 32px;
+}
+
+.notes-back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--lavender-primary-dark);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.notes-back-link:hover {
+    color: var(--lavender-primary);
+}
+
+
+/* =========================================================
+   Responsive layout
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .notes-content {
+        width: min(97vw, 1880px);
+        max-width: 1880px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+
+    .notes-content {
+        width: 100%;
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .notes-welcome-section {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .notes-welcome-actions {
+        width: 100%;
+    }
+
+    .notes-primary-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .notes-main {
+        padding-top: 18px;
+        padding-bottom: 40px;
+    }
+
+    .notes-content {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .notes-welcome-section {
+        padding: 30px 24px;
+        border-radius: 20px;
+    }
+
+    .notes-welcome-section h1 {
+        font-size: 38px;
+    }
+
+    .notes-welcome-section p {
+        font-size: 19px;
+    }
+
+    .notes-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .note-card {
+        min-height: 0;
+        padding: 27px 23px;
+        border-radius: 19px;
+    }
+
+    .note-icon {
+        flex-basis: 56px;
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+
+    .note-heading h3 {
+        font-size: 26px;
+    }
+
+    .note-content p {
+        font-size: 17px;
+    }
+
+    .notes-empty-card {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 30px 24px;
+        border-radius: 20px;
+    }
+
+    .notes-empty-icon {
+        flex-basis: 76px;
+        width: 76px;
+        height: 76px;
+        border-radius: 22px;
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .notes-content {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .notes-welcome-section,
+    .note-card,
+    .notes-empty-card {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .note-card-header {
+        flex-direction: column;
+    }
+
+    .notes-welcome-section h1 {
+        font-size: 34px;
+    }
+}

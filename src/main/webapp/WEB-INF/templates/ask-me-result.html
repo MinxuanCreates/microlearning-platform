@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Ask Me Here - i+1</title>
+
+  <!-- Bootstrap styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <!-- Bootstrap icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet"
+        th:href="@{/css/style.css?v=7}">
+
+  <!-- Ask Me Here result styles -->
+  <link rel="stylesheet"
+        th:href="@{/css/ask-me-result.css?v=2}">
+
+</head>
+
+<body class="ask-result-page">
+
+<!-- Main navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+  <div class="container-fluid navbar-content">
+
+    <!-- Brand -->
+    <div class="d-flex align-items-center">
+
+      <!-- Brand link for logged-in users -->
+      <a class="navbar-brand fw-bold me-2"
+         th:if="${loggedIn}"
+         th:href="@{/dashboard}">
+        i+1
+      </a>
+
+      <!-- Brand link for visitors -->
+      <a class="navbar-brand fw-bold me-2"
+         th:unless="${loggedIn}"
+         th:href="@{/}">
+        i+1
+      </a>
+
+      <span class="brand-tagline">
+        Welcome!
+      </span>
+
+    </div>
+
+
+    <!-- Mobile menu button -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+
+    <!-- Navigation links -->
+    <div class="collapse navbar-collapse"
+         id="mainNavbar">
+
+      <!-- Navigation for logged-in users -->
+      <div class="navbar-nav ms-auto align-items-lg-center"
+           th:if="${loggedIn}">
+
+        <a class="nav-link"
+           th:href="@{/dashboard}">
+          My Journey
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/modules}">
+          Learning
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/community}">
+          Community
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/view-notes}">
+          Notes
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/logout}">
+          Logout
+        </a>
+
+      </div>
+
+
+      <!-- Navigation for visitors -->
+      <div class="navbar-nav ms-auto align-items-lg-center"
+           th:unless="${loggedIn}">
+
+        <a class="nav-link"
+           th:href="@{/}">
+          Home
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/modules}">
+          Learning
+        </a>
+
+        <a class="nav-link"
+           th:href="@{/community}">
+          Community
+        </a>
+
+        <a class="btn btn-outline-primary
+                  ms-lg-3 mt-2 mt-lg-0
+                  nav-action-btn"
+           th:href="@{/login}">
+          Login
+        </a>
+
+        <a class="btn btn-primary
+                  ms-lg-2 mt-2 mt-lg-0
+                  nav-action-btn"
+           th:href="@{/register}">
+          Create Account
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<!-- Ask Me Here result -->
+<main class="ask-result-main">
+
+  <div class="ask-result-container">
+
+
+    <!-- Page heading -->
+    <section class="ask-result-heading">
+
+      <span class="ask-result-eyebrow">
+
+        <i class="bi bi-stars me-2"
+           aria-hidden="true">
+        </i>
+
+        NLP-based learning guidance
+
+      </span>
+
+      <h1>
+        Here is a suggested next step
+      </h1>
+
+      <p>
+        Your question has been analysed to identify
+        a suitable learning direction.
+      </p>
+
+    </section>
+
+
+    <!-- Main result card -->
+    <section class="ask-result-card">
+
+
+      <!-- User question -->
+      <div class="ask-question-panel">
+
+        <div class="ask-panel-icon"
+             aria-hidden="true">
+
+          <i class="bi bi-chat-left-text"></i>
+
+        </div>
+
+        <div>
+
+          <span class="ask-result-label">
+            Your question
+          </span>
+
+          <h2 th:text="${question}">
+            How do I start learning Java?
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <!-- Identified learning intent -->
+      <div class="ask-guidance-panel"
+           th:if="${detectedIntent != null
+                   and detectedIntent.name() != 'UNKNOWN'}">
+
+        <div class="ask-guidance-heading">
+
+          <div class="ask-panel-icon guidance-panel-icon"
+               aria-hidden="true">
+
+            <i class="bi bi-cpu"></i>
+
+          </div>
+
+          <div>
+
+            <span class="ask-result-label">
+              Learning need identified
+            </span>
+
+            <h2 th:if="${detectedIntent.name() == 'BEGINNER_PROGRAMMING'}">
+              Beginner Programming
+            </h2>
+
+            <h2 th:if="${detectedIntent.name() == 'FIRST_JAVA_PROGRAM'}">
+              First Java Program
+            </h2>
+
+            <h2 th:if="${detectedIntent.name() == 'CYBER_SECURITY'}">
+              Cyber Security
+            </h2>
+
+          </div>
+
+        </div>
+
+        <p class="ask-guidance-text">
+          This learning need was identified using
+          lightweight NLP-based similarity matching.
+        </p>
+
+      </div>
+
+
+      <!-- Guidance -->
+      <div class="ask-guidance-panel">
+
+        <div class="ask-guidance-heading">
+
+          <div class="ask-panel-icon guidance-panel-icon"
+               aria-hidden="true">
+
+            <i class="bi bi-lightbulb"></i>
+
+          </div>
+
+          <div>
+
+            <span class="ask-result-label">
+              Guidance
+            </span>
+
+            <h2>
+              A supportive place to begin
+            </h2>
+
+          </div>
+
+        </div>
+
+        <p class="ask-guidance-text"
+           th:text="${answer}">
+          Your guidance will appear here.
+        </p>
+
+      </div>
+
+
+      <!-- Recommended module -->
+      <div class="ask-recommendation-panel"
+           th:if="${recommendedModule != null}">
+
+        <div class="ask-recommendation-content">
+
+          <span class="ask-result-label">
+            Recommended next step
+          </span>
+
+          <h2 th:text="${recommendedModule}">
+            Recommended module
+          </h2>
+
+          <p>
+            Continue with a short lesson that matches
+            your question and current learning needs.
+          </p>
+
+          <div class="ask-module-details">
+
+            <span>
+
+              <i class="bi bi-clock me-2"
+                 aria-hidden="true">
+              </i>
+
+              Short lesson
+
+            </span>
+
+            <span>
+
+              <i class="bi bi-bar-chart me-2"
+                 aria-hidden="true">
+              </i>
+
+              Beginner friendly
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="ask-recommendation-action">
+
+          <a class="btn btn-primary ask-primary-button"
+             th:href="@{/lesson(moduleId=${recommendedModuleId})}">
+
+            Start this lesson
+
+            <i class="bi bi-arrow-right ms-2"
+               aria-hidden="true">
+            </i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Page actions -->
+      <div class="ask-result-actions">
+
+        <a class="btn btn-outline-primary ask-secondary-button"
+           th:href="@{/modules}">
+
+          <i class="bi bi-book me-2"
+             aria-hidden="true">
+          </i>
+
+          Explore Learning
+
+        </a>
+
+
+        <!-- Return to Dashboard when logged in -->
+        <a class="btn ask-back-button"
+           th:if="${loggedIn}"
+           th:href="@{/dashboard}">
+
+          <i class="bi bi-arrow-left me-2"
+             aria-hidden="true">
+          </i>
+
+          Ask Another Question
+
+        </a>
+
+
+        <!-- Return Home when not logged in -->
+        <a class="btn ask-back-button"
+           th:unless="${loggedIn}"
+           th:href="@{/}">
+
+          <i class="bi bi-arrow-left me-2"
+             aria-hidden="true">
+          </i>
+
+          Ask Another Question
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- Supportive message -->
+    <div class="ask-support-message">
+
+      <i class="bi bi-heart-fill"
+         aria-hidden="true">
+      </i>
+
+      <span>
+        You do not need to learn everything at once.
+        One small step is enough to begin.
+      </span>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- Bootstrap scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

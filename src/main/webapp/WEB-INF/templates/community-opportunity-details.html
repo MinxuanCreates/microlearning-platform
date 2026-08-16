@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Opportunity Details - i+1</title>
+
+    <!-- Bootstrap styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css?v=4}">
+
+    <!-- Community styles -->
+    <link rel="stylesheet"
+          th:href="@{/css/community.css?v=5}">
+</head>
+
+<body>
+
+<!-- Main navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+    <div class="container community-navbar-content">
+
+        <!-- Brand -->
+        <div class="d-flex align-items-center">
+
+            <!-- Logged-in users return to My Journey -->
+            <a class="navbar-brand fw-bold me-2"
+               th:if="${session.userId != null}"
+               th:href="@{/dashboard}">
+                i+1
+            </a>
+
+            <!-- Visitors return to the home page -->
+            <a class="navbar-brand fw-bold me-2"
+               th:unless="${session.userId != null}"
+               th:href="@{/}">
+                i+1
+            </a>
+
+            <span class="brand-tagline">
+                Welcome!
+            </span>
+
+        </div>
+
+        <!-- Mobile navigation button -->
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="mainNavbar">
+
+            <div class="navbar-nav ms-auto align-items-lg-center">
+
+                <!-- Logged-in users see My Journey first -->
+                <a class="nav-link"
+                   th:if="${loggedIn}"
+                   th:href="@{/dashboard}">
+                    My Journey
+                </a>
+
+                <!-- Visitors see Home -->
+                <a class="nav-link"
+                   th:if="${!loggedIn}"
+                   th:href="@{/}">
+                    Home
+                </a>
+
+                <!-- Learning page -->
+                <a class="nav-link"
+                   th:href="@{/modules}">
+                    Learning
+                </a>
+
+                <!-- Current page -->
+                <a class="nav-link active"
+                   th:href="@{/community}">
+                    Community
+                </a>
+
+                <!-- Logged-in users can view notes -->
+                <a class="nav-link"
+                   th:if="${loggedIn}"
+                   th:href="@{/view-notes}">
+                    Notes
+                </a>
+
+                <!-- Visitor login button -->
+                <a class="btn btn-outline-primary community-login-nav-button ms-lg-3"
+                   th:if="${!loggedIn}"
+                   th:href="@{/login}">
+                    Login
+                </a>
+
+                <!-- Visitor registration button -->
+                <a class="btn btn-primary community-register-nav-button ms-lg-2"
+                   th:if="${!loggedIn}"
+                   th:href="@{/register}">
+                    Create Account
+                </a>
+
+                <!-- Logged-in user logout button -->
+                <a class="btn btn-outline-primary community-login-nav-button ms-lg-3"
+                   th:if="${loggedIn}"
+                   th:href="@{/logout}">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<main class="community-main">
+
+    <div class="community-content">
+
+        <!-- Back button -->
+        <div class="community-opportunity-details-back">
+
+            <a class="btn btn-outline-secondary community-opportunity-back-button"
+               th:href="@{/community-opportunities}">
+
+                <i class="bi bi-arrow-left me-2"
+                   aria-hidden="true"></i>
+
+                Back to Opportunities
+
+            </a>
+
+        </div>
+
+        <!-- Opportunity details -->
+        <section class="community-opportunity-details-page">
+
+            <div class="community-opportunity-details-card">
+
+                <!-- Opportunity type and date -->
+                <div class="community-opportunity-card-header">
+
+                    <span class="community-opportunity-type"
+                          th:classappend="${opportunity.opportunityType == 'Project Collaboration'}
+                              ? ' opportunity-type-project'
+                              : (${opportunity.opportunityType == 'Community Event'}
+                              ? ' opportunity-type-event'
+                              : ' opportunity-type-other')"
+                          th:text="${opportunity.opportunityType}">
+
+                        Project Collaboration
+
+                    </span>
+
+                    <span class="community-opportunity-created"
+                          th:if="${opportunity.createdAt != null}"
+                          th:text="${#temporals.format(
+                              opportunity.createdAt,
+                              'dd MMM yyyy'
+                          )}">
+
+                        17 Jul 2026
+
+                    </span>
+
+                </div>
+
+                <!-- Opportunity title -->
+                <h1 th:text="${opportunity.title}">
+                    Looking for a Java project partner
+                </h1>
+
+                <!-- Publisher -->
+                <div class="community-opportunity-author"
+                     th:if="${opportunity.username != null
+                     and !#strings.isEmpty(opportunity.username)}">
+
+                    <i class="bi bi-person-circle"
+                       aria-hidden="true"></i>
+
+                    <span>
+
+                        Posted by
+
+                        <strong th:text="${opportunity.username}">
+                            Username
+                        </strong>
+
+                    </span>
+
+                </div>
+
+                <!-- Description -->
+                <div class="community-opportunity-details-description">
+
+                    <h2>
+                        About this opportunity
+                    </h2>
+
+                    <p th:text="${opportunity.description}">
+                        Full opportunity description appears here.
+                    </p>
+
+                </div>
+
+                <!-- Opportunity information -->
+                <div class="community-opportunity-details-grid">
+
+                    <!-- Location -->
+                    <div class="community-opportunity-information-card"
+                         th:if="${opportunity.location != null
+                         and !#strings.isEmpty(opportunity.location)}">
+
+                        <div class="community-opportunity-information-icon"
+                             aria-hidden="true">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Location
+                            </h3>
+
+                            <p th:text="${opportunity.location}">
+                                Online
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Date and time -->
+                    <div class="community-opportunity-information-card"
+                         th:if="${opportunity.eventDate != null}">
+
+                        <div class="community-opportunity-information-icon"
+                             aria-hidden="true">
+
+                            <i class="bi bi-calendar-event"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Date and time
+                            </h3>
+
+                            <p th:text="${#temporals.format(
+                                opportunity.eventDate,
+                                'dd MMM yyyy, HH:mm'
+                            )}">
+
+                                25 Jul 2026, 14:00
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Contact information -->
+                <section class="community-opportunity-contact-section">
+
+                    <h2>
+                        Contact information
+                    </h2>
+
+                    <!-- Logged-in users can view contact details -->
+                    <div th:if="${loggedIn
+                         and opportunity.contactInformation != null
+                         and !#strings.isEmpty(opportunity.contactInformation)}"
+                         class="community-opportunity-contact-box">
+
+                        <i class="bi bi-envelope"
+                           aria-hidden="true"></i>
+
+                        <span th:text="${opportunity.contactInformation}">
+                            Contact information
+                        </span>
+
+                    </div>
+
+                    <!-- Visitors must log in -->
+                    <div th:if="${!loggedIn
+                         and opportunity.contactInformation != null
+                         and !#strings.isEmpty(opportunity.contactInformation)}"
+                         class="community-opportunity-contact-locked">
+
+                        <i class="bi bi-lock"
+                           aria-hidden="true"></i>
+
+                        <div>
+
+                            <h3>
+                                Contact details are protected
+                            </h3>
+
+                            <p>
+                                Log in to view the contact information for this opportunity.
+                            </p>
+
+                            <a class="btn btn-primary community-account-button"
+                               th:href="@{/login}">
+
+                                Log in to view contact details
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- No contact information -->
+                    <div th:if="${opportunity.contactInformation == null
+                         or #strings.isEmpty(opportunity.contactInformation)}"
+                         class="community-opportunity-contact-empty">
+
+                        <i class="bi bi-info-circle"
+                           aria-hidden="true"></i>
+
+                        <span>
+                            No contact information was provided.
+                        </span>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="community-opportunity-footer">
+
+    <div class="community-content">
+
+        <p>
+            i+1 — Grow through Shared Learning
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

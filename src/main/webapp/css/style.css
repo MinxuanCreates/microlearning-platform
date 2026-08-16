@@ -1,0 +1,1017 @@
+:root {
+    --lavender-primary: #A894D6;
+    --lavender-primary-dark: #7C68B3;
+    --lavender-light: #F5F0FF;
+    --lavender-bg: #EDE4FF;
+    --lavender-border: #DDD2F3;
+    --text-main: #222222;
+    --text-muted: #706978;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--lavender-bg);
+    color: var(--text-main);
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
+.navbar {
+    min-height: 92px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.navbar-content {
+    width: min(97vw, 1820px);
+    max-width: 1820px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(16px, 1.4vw, 26px);
+    padding-right: clamp(16px, 1.4vw, 26px);
+}
+
+.navbar-brand {
+    color: var(--lavender-primary-dark) !important;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.brand-tagline {
+    color: #4F4A58;
+    font-size: 21px;
+}
+
+.navbar-nav {
+    gap: 12px;
+}
+
+.navbar-nav .nav-link {
+    padding: 14px 16px;
+    color: var(--text-main);
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--lavender-primary-dark);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--lavender-primary-dark);
+    font-weight: 700;
+}
+
+/* Navigation buttons */
+.navbar .nav-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 170px;
+    height: 56px;
+    padding: 0 24px;
+    border-radius: 13px;
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Shared cards
+   ========================================================= */
+
+.card {
+    border: 1px solid var(--lavender-border);
+    border-radius: 18px;
+}
+
+.dashboard-card {
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+}
+
+.welcome-section {
+    padding: 28px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(124, 104, 179, 0.12);
+}
+
+
+/* =========================================================
+   Badges
+   ========================================================= */
+
+.badge {
+    font-weight: 500;
+}
+
+.badge.text-bg-light {
+    border: 1px solid var(--lavender-border);
+    background-color: var(--lavender-light) !important;
+    color: var(--lavender-primary-dark) !important;
+}
+
+.simple-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid var(--lavender-border);
+    border-radius: 20px;
+    background-color: var(--lavender-light);
+    font-size: 0.85rem;
+}
+
+.simple-badge.locked {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.btn-primary {
+    border-color: var(--lavender-primary) !important;
+    background-color: var(--lavender-primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    border-color: var(--lavender-primary-dark) !important;
+    background-color: var(--lavender-primary-dark) !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--lavender-primary) !important;
+    color: var(--lavender-primary-dark) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    border-color: var(--lavender-primary) !important;
+    background-color: var(--lavender-primary) !important;
+    color: #FFFFFF !important;
+}
+
+/* Shared page buttons */
+.action-btn,
+.form-action-btn,
+.small-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 52px;
+    padding: 0 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Lesson page
+   ========================================================= */
+
+.square-lesson-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    aspect-ratio: 1 / 0.85;
+}
+
+.lesson-box {
+    padding: 18px;
+    border-left: 4px solid var(--lavender-primary);
+    border-radius: 14px;
+    background-color: var(--lavender-light);
+}
+
+.lesson-actions {
+    padding: 18px;
+    border: 1px solid var(--lavender-border);
+    border-radius: 16px;
+    background-color: var(--lavender-light);
+}
+
+.video-placeholder {
+    border: 1px dashed var(--lavender-primary);
+    border-radius: 12px;
+    background-color: var(--lavender-light);
+    color: var(--lavender-primary-dark);
+}
+
+
+/* =========================================================
+   Community
+   ========================================================= */
+
+.community-post {
+    padding: 18px;
+    border: 1px solid var(--lavender-border);
+    border-radius: 16px;
+    background-color: #FFFFFF;
+}
+
+.community-post:hover {
+    background-color: #FBF9FF;
+}
+
+.community-square-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.community-card-title {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.community-card-title h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   Learning progress
+   ========================================================= */
+
+.growth-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.check-box {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--lavender-primary);
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    color: transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.checklist-item.completed .check-box {
+    background-color: var(--lavender-light);
+    color: var(--lavender-primary-dark);
+}
+
+
+/* =========================================================
+   Notebook actions
+   ========================================================= */
+
+.notebook-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.notebook-actions .action-btn {
+    flex: 0 0 220px;
+    width: 220px;
+}
+
+
+/* =========================================================
+   Login and register pages
+   ========================================================= */
+
+.register-page,
+.login-page {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 36px 24px;
+    background-color: var(--lavender-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.register-page {
+    background-image: url("../images/auth/register-background.jpg");
+}
+
+.login-page {
+    background-image: url("../images/auth/login-background.jpg");
+}
+
+/* Background overlay */
+.register-page::before,
+.login-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(237, 228, 255, 0.48);
+}
+
+/* Form cards */
+.register-card,
+.login-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 680px;
+    padding: 54px 60px;
+    border: 1px solid rgba(221, 210, 243, 0.92);
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 12px 34px rgba(70, 54, 100, 0.22);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.register-card {
+    transform: translateY(-35px);
+}
+
+/* Form headings */
+.register-card h1,
+.register-card h2,
+.login-card h1,
+.login-card h2 {
+    margin: 0 0 14px;
+    color: var(--text-main);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+}
+
+/* Form subtitles */
+.register-subtitle,
+.login-subtitle {
+    margin-bottom: 34px;
+    color: var(--text-muted);
+    font-size: 21px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Form labels */
+.register-card label,
+.login-card label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--text-main);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Form fields */
+.register-card .form-control,
+.register-card .form-select,
+.login-card .form-control,
+.login-card .form-select {
+    width: 100%;
+    min-height: 64px;
+    padding: 15px 18px;
+    border: 1px solid #CFC7DC;
+    border-radius: 11px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+}
+
+.register-card .form-control:focus,
+.register-card .form-select:focus,
+.login-card .form-control:focus,
+.login-card .form-select:focus {
+    border-color: var(--lavender-primary);
+    box-shadow: 0 0 0 4px rgba(168, 148, 214, 0.22);
+}
+
+.register-card .form-control::placeholder,
+.login-card .form-control::placeholder {
+    color: #81798A;
+    font-size: 19px;
+}
+
+/* Form spacing */
+.register-card .mb-3,
+.login-card .mb-3 {
+    margin-bottom: 26px !important;
+}
+
+.register-card .mb-4,
+.login-card .mb-4 {
+    margin-bottom: 30px !important;
+}
+
+/* Form buttons */
+.register-card .btn,
+.login-card .btn,
+.register-button,
+.login-button {
+    min-width: 240px;
+    min-height: 62px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Form text and links */
+.register-card p,
+.register-card a,
+.login-card p,
+.login-card a {
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.register-card a,
+.login-card a {
+    color: var(--lavender-primary-dark);
+    font-weight: 600;
+}
+
+.register-card a:hover,
+.login-card a:hover {
+    color: var(--lavender-primary);
+}
+
+.bottom-links {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.bottom-links p {
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   Large screens
+   ========================================================= */
+
+@media (min-width: 1600px) {
+
+    .navbar-content {
+        width: min(97vw, 1880px);
+        max-width: 1880px;
+    }
+}
+
+@media (max-width: 1399.98px) {
+
+    .navbar-content {
+        width: min(97vw, 1500px);
+    }
+}
+
+@media (max-width: 1199.98px) {
+
+    .navbar-content {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+/* =========================================================
+   Tablet navigation
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .navbar {
+        min-height: auto;
+    }
+
+    .navbar-content {
+        width: 100%;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .navbar-brand {
+        font-size: 30px;
+    }
+
+    .brand-tagline {
+        font-size: 18px;
+    }
+
+    .navbar-nav {
+        gap: 0;
+        padding-top: 16px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 12px 0;
+        font-size: 19px;
+    }
+
+    .navbar .nav-action-btn {
+        width: 100%;
+        height: 54px;
+        margin-left: 0 !important;
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================================
+   Tablet forms
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .register-page,
+    .login-page {
+        padding: 24px 16px;
+    }
+
+    .register-card,
+    .login-card {
+        max-width: 100%;
+        padding: 40px 30px;
+        transform: none;
+    }
+
+    .register-card h1,
+    .register-card h2,
+    .login-card h1,
+    .login-card h2 {
+        font-size: 32px;
+    }
+
+    .register-subtitle,
+    .login-subtitle {
+        font-size: 18px;
+    }
+
+    .register-card label,
+    .login-card label {
+        font-size: 18px;
+    }
+
+    .register-card .form-control,
+    .register-card .form-select,
+    .login-card .form-control,
+    .login-card .form-select {
+        min-height: 58px;
+        font-size: 18px;
+    }
+
+    .register-card .form-control::placeholder,
+    .login-card .form-control::placeholder {
+        font-size: 17px;
+    }
+
+    .register-card .btn,
+    .login-card .btn,
+    .register-button,
+    .login-button {
+        width: 100%;
+        min-width: 0;
+        font-size: 18px;
+    }
+
+    .register-card p,
+    .register-card a,
+    .login-card p,
+    .login-card a {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   Mobile layout
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+
+    .navbar-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .navbar-brand {
+        font-size: 27px;
+    }
+
+    .brand-tagline {
+        font-size: 17px;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 18px;
+    }
+
+    .navbar .nav-action-btn {
+        height: 52px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .register-page::before,
+    .login-page::before {
+        background-color: rgba(237, 228, 255, 0.58);
+    }
+
+    .register-card,
+    .login-card {
+        padding: 32px 22px;
+        border-radius: 18px;
+    }
+
+    .register-card h1,
+    .register-card h2,
+    .login-card h1,
+    .login-card h2 {
+        font-size: 28px;
+    }
+
+    .notebook-actions {
+        flex-wrap: wrap;
+    }
+
+    .notebook-actions .action-btn {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .navbar-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 25px;
+    }
+
+    .brand-tagline {
+        font-size: 15px;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 17px;
+    }
+}
+
+/* Keep lesson videos responsive */
+.lesson-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background-color: #000;
+    border-radius: 14px;
+}
+
+/* ==================================================
+   Lesson page
+   ================================================== */
+
+/* Page background */
+body.lesson-page {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #f8f6ff 0%,
+                    #eee8ff 50%,
+                    #f8f5ff 100%
+            ) !important;
+}
+
+/* Soft decoration on the left and right */
+body.lesson-page::before,
+body.lesson-page::after {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body.lesson-page::before {
+    width: 420px;
+    height: 420px;
+    top: 160px;
+    left: -230px;
+
+    background:
+            radial-gradient(
+                    circle,
+                    rgba(157, 124, 210, 0.2) 0%,
+                    rgba(157, 124, 210, 0.08) 55%,
+                    transparent 72%
+            );
+}
+
+body.lesson-page::after {
+    width: 480px;
+    height: 480px;
+    top: 520px;
+    right: -250px;
+
+    background:
+            radial-gradient(
+                    circle,
+                    rgba(197, 176, 232, 0.22) 0%,
+                    rgba(197, 176, 232, 0.08) 55%,
+                    transparent 72%
+            );
+}
+
+/* Keep navigation and lesson content above decorations */
+body.lesson-page nav,
+body.lesson-page .lesson-main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Main lesson area */
+body.lesson-page .lesson-main {
+    width: 100%;
+    max-width: 1280px;
+    margin: 38px auto 65px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+/* Wider lesson content */
+body.lesson-page .lesson-main .col-md-9 {
+    width: 100%;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Main white lesson card */
+body.lesson-page .lesson-card {
+    width: 100%;
+    padding: 32px !important;
+
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(119, 82, 170, 0.18);
+    border-radius: 22px;
+
+    box-shadow:
+            0 18px 48px rgba(79, 54, 116, 0.11) !important;
+}
+
+/* Lesson title */
+body.lesson-page .lesson-card h1 {
+    margin-bottom: 12px;
+
+    color: #3f3154;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Duration badge */
+body.lesson-page .lesson-card .badge {
+    padding: 8px 13px;
+
+    color: #65498b !important;
+    background-color: #f1ebfb !important;
+    border-radius: 20px;
+}
+
+/* Progress bar background */
+body.lesson-page .lesson-card .progress {
+    height: 10px;
+
+    background-color: #ece5f7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Progress bar colour */
+body.lesson-page .lesson-card .progress-bar {
+    background-color: #8461b5;
+}
+
+/* Video and useful-link cards */
+body.lesson-page .lesson-content-choice > .card {
+    background-color: #faf8fe !important;
+    border: 1px solid rgba(119, 82, 170, 0.14);
+    border-radius: 16px;
+    box-shadow: none;
+}
+
+/* Video */
+body.lesson-page .lesson-video {
+    display: block;
+    width: 100%;
+
+    background-color: #000000;
+    border-radius: 12px;
+}
+
+/* ==================================================
+   Transcript section
+   ================================================== */
+
+/* Transcript card */
+body.lesson-page .transcript-section {
+    margin-bottom: 16px;
+
+    background-color: #faf8fe;
+    border: 1px solid rgba(119, 82, 170, 0.16);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Transcript heading */
+body.lesson-page .transcript-section summary {
+    padding: 16px 18px;
+
+    color: #65498b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style-position: inside;
+}
+
+/* Space below the heading when open */
+body.lesson-page .transcript-section details[open] summary {
+    padding-bottom: 12px;
+}
+
+/* Scrollable transcript content */
+body.lesson-page .transcript-content {
+    max-height: 320px;
+    margin: 0 16px 16px;
+    padding: 14px;
+
+    overflow-y: auto;
+
+    background-color: #ffffff;
+    border: 1px solid #eee7f7;
+    border-radius: 10px;
+
+    color: #444444;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+/* One transcript block */
+body.lesson-page .transcript-block {
+    padding: 0 0 14px;
+    margin: 0 0 14px;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e5dff0;
+    border-radius: 0;
+}
+
+/* Remove the final divider */
+body.lesson-page .transcript-block:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+/* Timestamp */
+body.lesson-page .transcript-time {
+    margin-bottom: 8px;
+
+    color: #7656a0;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* English text */
+body.lesson-page .transcript-english {
+    margin-bottom: 8px;
+    color: #333333;
+}
+
+/* Chinese text */
+body.lesson-page .transcript-chinese {
+    margin-bottom: 0;
+    color: #665c70;
+}
+
+/* Transcript scrollbar */
+body.lesson-page .transcript-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+body.lesson-page .transcript-content::-webkit-scrollbar-track {
+    background-color: #f1edf7;
+    border-radius: 10px;
+}
+
+body.lesson-page .transcript-content::-webkit-scrollbar-thumb {
+    background-color: #b6a3d2;
+    border-radius: 10px;
+}
+
+/* ==================================================
+   Learning actions
+   ================================================== */
+
+body.lesson-page .lesson-actions {
+    padding: 20px;
+
+    background-color: #f8f5fc;
+    border: 1px solid rgba(119, 82, 170, 0.13);
+    border-radius: 16px;
+}
+
+/* ==================================================
+   Responsive layout
+   ================================================== */
+
+@media (max-width: 1200px) {
+
+    body.lesson-page .lesson-main .col-md-9 {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body.lesson-page .lesson-main {
+        margin-top: 24px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    body.lesson-page .lesson-card {
+        padding: 20px !important;
+        border-radius: 17px;
+    }
+
+    body.lesson-page .lesson-card h1 {
+        font-size: 1.65rem;
+    }
+
+    body.lesson-page .transcript-content {
+        max-height: 280px;
+        margin-left: 12px;
+        margin-right: 12px;
+        padding: 12px;
+    }
+
+    body.lesson-page::before,
+    body.lesson-page::after {
+        display: none;
+    }
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Add a Note - i+1</title>
+
+  <!-- Bootstrap styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <!-- Shared project styles -->
+  <link rel="stylesheet"
+        th:href="@{/css/style.css?v=6}">
+</head>
+
+<body>
+
+<!-- Main navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+  <div class="container-fluid navbar-content">
+
+    <!-- Brand -->
+    <div class="d-flex align-items-center">
+
+      <a class="navbar-brand fw-bold me-2"
+         th:href="@{/dashboard}">
+        i+1
+      </a>
+
+      <span class="brand-tagline">
+                Welcome!
+            </span>
+
+    </div>
+
+    <!-- Mobile menu button -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <!-- Navigation links -->
+    <div class="collapse navbar-collapse"
+         id="mainNavbar">
+
+      <div class="navbar-nav ms-auto align-items-lg-center">
+
+        <!-- My Journey page -->
+        <a class="nav-link"
+           th:href="@{/dashboard}">
+          My Journey
+        </a>
+
+        <!-- Learning page -->
+        <a class="nav-link"
+           th:href="@{/modules}">
+          Learning
+        </a>
+
+        <!-- Notes page -->
+        <a class="nav-link active"
+           th:href="@{/view-notes}">
+          Notes
+        </a>
+
+        <!-- Community page -->
+        <a class="nav-link"
+           th:href="@{/community}">
+          Community
+        </a>
+
+        <!-- Logout -->
+        <a class="nav-link"
+           th:href="@{/logout}">
+          Logout
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>
+
+<!-- Add note page -->
+<main class="container py-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+      <!-- Note form card -->
+      <div class="card shadow-sm p-4">
+
+        <h2 class="mb-3 text-center">
+          Add a Note
+        </h2>
+
+        <p class="text-muted text-center mb-4">
+          Write down a key idea, question or reflection from your learning.
+        </p>
+
+        <!-- Current lesson information -->
+        <div class="alert alert-light border"
+             th:if="${module != null}">
+
+          <p class="small text-muted mb-1">
+            Note for:
+          </p>
+
+          <strong th:text="${module.title}">
+            Lesson title
+          </strong>
+
+        </div>
+
+        <!-- Error message -->
+        <div class="alert alert-danger"
+             role="alert"
+             th:if="${error}"
+             th:text="${error}">
+          An error occurred.
+        </div>
+
+        <!-- Add note form -->
+        <form method="post"
+              th:action="@{/add-note}">
+
+          <!-- Keep the note linked to the current lesson -->
+          <input type="hidden"
+                 name="moduleId"
+                 th:if="${moduleId != null}"
+                 th:value="${moduleId}">
+
+          <!-- Note title -->
+          <div class="mb-3">
+
+            <label for="title"
+                   class="form-label">
+              Note Title
+            </label>
+
+            <input id="title"
+                   type="text"
+                   name="title"
+                   class="form-control"
+                   maxlength="150"
+                   th:value="${title}"
+                   placeholder="Example: What I learned about Java"
+                   required>
+
+          </div>
+
+          <!-- Note content -->
+          <div class="mb-4">
+
+            <label for="content"
+                   class="form-label">
+              Note Content
+            </label>
+
+            <textarea id="content"
+                      name="content"
+                      class="form-control"
+                      rows="6"
+                      maxlength="2000"
+                      th:text="${content}"
+                      placeholder="Write a key idea, question or reflection..."
+                      required></textarea>
+
+            <div class="form-text">
+              Maximum 2,000 characters.
+            </div>
+
+          </div>
+
+          <!-- Form buttons -->
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+            <!-- Save the note -->
+            <button type="submit"
+                    class="btn btn-primary form-action-btn">
+              Save Note
+            </button>
+
+            <!-- Return to the current lesson -->
+            <a class="btn btn-outline-primary form-action-btn"
+               th:if="${moduleId != null}"
+               th:href="@{/lesson(moduleId=${moduleId})}">
+              Back to Lesson
+            </a>
+
+            <!-- View all saved notes -->
+            <a class="btn btn-outline-primary form-action-btn"
+               th:href="@{/view-notes}">
+              View Notes
+            </a>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Bootstrap scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>View Notes - i+1</title>
+
+    <!-- Bootstrap styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css?v=7}">
+
+    <!-- Notes page styles -->
+    <link rel="stylesheet"
+          th:href="@{/css/notes.css?v=1}">
+</head>
+
+<body>
+
+<!-- Main navigation -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+    <div class="container-fluid navbar-content">
+
+        <!-- Brand -->
+        <div class="d-flex align-items-center">
+
+            <a class="navbar-brand fw-bold me-2"
+               th:href="@{/dashboard}">
+                i+1
+            </a>
+
+            <span class="brand-tagline">
+                Welcome!
+            </span>
+
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Navigation links -->
+        <div class="collapse navbar-collapse"
+             id="mainNavbar">
+
+            <div class="navbar-nav ms-auto align-items-lg-center">
+
+                <!-- My Journey page -->
+                <a class="nav-link"
+                   th:href="@{/dashboard}">
+                    My Journey
+                </a>
+
+                <!-- Learning page -->
+                <a class="nav-link"
+                   th:href="@{/modules}">
+                    Learning
+                </a>
+
+                <!-- Current page -->
+                <a class="nav-link active"
+                   th:href="@{/view-notes}">
+                    Notes
+                </a>
+
+                <!-- Community page -->
+                <a class="nav-link"
+                   th:href="@{/community}">
+                    Community
+                </a>
+
+                <!-- Logout -->
+                <a class="nav-link"
+                   th:href="@{/logout}">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- Notes page -->
+<main class="notes-main">
+
+    <div class="notes-content">
+
+        <!-- Note saved message -->
+        <div class="alert alert-success"
+             role="alert"
+             th:if="${noteSaved}">
+            Your note has been saved successfully.
+        </div>
+
+        <!-- Page introduction -->
+        <section class="notes-welcome-section">
+
+            <div class="notes-welcome-text">
+
+                <span class="notes-eyebrow">
+                    Your personal learning notebook
+                </span>
+
+                <h1>
+                    Your Learning Notes
+                </h1>
+
+                <p>
+                    Review ideas, questions and reflections you have recorded
+                    throughout your learning journey.
+                </p>
+
+            </div>
+
+            <div class="notes-welcome-actions">
+
+                <a class="btn btn-primary notes-primary-button"
+                   th:href="@{/add-note}">
+
+                    <i class="bi bi-plus-circle me-2"
+                       aria-hidden="true">
+                    </i>
+
+                    Add a Note
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Empty notes state -->
+        <section class="notes-empty-card"
+                 th:if="${#lists.isEmpty(notes)}">
+
+            <div class="notes-empty-icon"
+                 aria-hidden="true">
+
+                <i class="bi bi-journal-plus"></i>
+
+            </div>
+
+            <div class="notes-empty-content">
+
+                <span class="notes-card-label">
+                    Your notebook is ready
+                </span>
+
+                <h2>
+                    No Notes Yet
+                </h2>
+
+                <p>
+                    You have not created any notes yet. Start with a short idea,
+                    question or reflection from your latest lesson.
+                </p>
+
+                <a class="btn btn-primary notes-primary-button"
+                   th:href="@{/add-note}">
+
+                    <i class="bi bi-pencil-square me-2"
+                       aria-hidden="true">
+                    </i>
+
+                    Add Your First Note
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Notes list -->
+        <section th:if="${!#lists.isEmpty(notes)}">
+
+            <div class="notes-section-heading">
+
+                <div>
+
+                    <span class="notes-eyebrow">
+                        Saved reflections
+                    </span>
+
+                    <h2>
+                        Your Notes
+                    </h2>
+
+                </div>
+
+                <span class="notes-count-badge">
+
+                    <i class="bi bi-journals me-2"
+                       aria-hidden="true">
+                    </i>
+
+                    <span th:text="${#lists.size(notes)}">
+                        0
+                    </span>
+
+                    notes
+
+                </span>
+
+            </div>
+
+            <div class="row g-4">
+
+                <!-- One note card -->
+                <div class="col-12 col-md-6"
+                     th:each="note : ${notes}">
+
+                    <article class="note-card">
+
+                        <div class="note-card-header">
+
+                            <div class="note-icon"
+                                 aria-hidden="true">
+
+                                <i class="bi bi-journal-text"></i>
+
+                            </div>
+
+                            <div class="note-heading">
+
+                                <!-- Linked lesson name -->
+                                <span class="notes-card-label"
+                                      th:if="${note.moduleTitle != null}"
+                                      th:text="${note.moduleTitle}">
+                                    Lesson title
+                                </span>
+
+                                <!-- General note label -->
+                                <span class="notes-card-label"
+                                      th:if="${note.moduleTitle == null}">
+                                    General note
+                                </span>
+
+                                <h3 th:text="${note.title}">
+                                    Note Title
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Note date -->
+                        <div class="note-date">
+
+                            <i class="bi bi-calendar3"
+                               aria-hidden="true">
+                            </i>
+
+                            <span>
+                                Created on
+                            </span>
+
+                            <time th:text="${note.createdAt}">
+                                2026-06-21
+                            </time>
+
+                        </div>
+
+                        <!-- Note content -->
+                        <div class="note-content">
+
+                            <p th:text="${note.content}">
+                                Note content appears here.
+                            </p>
+
+                        </div>
+
+                        <!-- Linked lesson action -->
+                        <div class="mt-3"
+                             th:if="${note.moduleId != null}">
+
+                            <a class="btn btn-outline-primary btn-sm"
+                               th:href="@{/lesson(moduleId=${note.moduleId})}">
+
+                                <i class="bi bi-arrow-right-circle me-2"
+                                   aria-hidden="true">
+                                </i>
+
+                                View Lesson
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Bottom action -->
+        <div class="notes-bottom-actions">
+
+            <a class="notes-back-link"
+               th:href="@{/dashboard}">
+
+                <i class="bi bi-arrow-left me-2"
+                   aria-hidden="true">
+                </i>
+
+                Back to My Journey
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>
